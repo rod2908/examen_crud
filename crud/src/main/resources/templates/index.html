@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Directorio de ciudadanos</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<style>
+		
+		.column {
+		  float: left;
+		  width: 30%;
+		}
+		
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+		
+	</style>
+</head>
+
+<body>
+
+    <div class="container my-2">
+        <h1>Directorio</h1>
+
+        <h2> Añadir ciudadano nuevo:</h2>
+       	<hr>
+       	
+       	
+       	<!---->
+		<form action="#" th:action="@{/save}" th:object="${ciudadano}" method="post">
+
+			<div class="row">
+  				<div class="column">
+  
+		            <p>Nombre: <input type="text" th:field="*{nombre}" class="form-control mb-4 col-7"></p>
+		            <p>Apellido: <input type="text" th:field="*{apellido}" class="form-control mb-4 col-7"></p>
+				</div>
+				
+				<div class="column">
+				
+		            <p>Calle: <input type="text" th:field="*{domicilio.calle}" class="form-control mb-4 col-7"></p>
+		            <p>Ciudad: <input type="text" th:field="*{domicilio.ciudad}" class="form-control mb-4 col-7"></p>
+					
+				</div>
+				
+				<div class="column">
+		            <p>Código Postal: <input type="text" th:field="*{domicilio.cp}" value="" class="form-control mb-4 col-7"></p>
+					<p><button type="submit" class="btn btn-info mb-4 col-7"> Guardar</button></p>
+				</div>
+			</div>
+			
+    	</form>
+
+        <hr>
+			
+		
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Calle</th>
+                    <th>Ciudad</th>
+                    <th>C.P.</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ciudadano : ${listaCiudadanos}">
+                    <td th:text="${ciudadano.nombre}"></td>
+                    <td th:text="${ciudadano.apellido}"></td>
+                    <td th:text="${ciudadano.domicilio.calle}"></td>
+					<td th:text="${ciudadano.domicilio.ciudad}"></td>
+                    <td th:text="${ciudadano.domicilio.cp}"></td>
+                    <td> <a th:href="@{/update/{id}(id=${ciudadano.id})}" class="btn btn-primary">Actualizar</a>
+                         <a th:href="@{/delete/{id}(id=${ciudadano.id})}" class="btn btn-danger">Borrar</a>
+                    </td>
+
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
