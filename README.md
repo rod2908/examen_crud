@@ -9,3 +9,6 @@ Características del ambiente de dasarrollo:
 - Servidor Tomcat (embebido)
 - Bootstrap
 - Motor de plantillas Thymeleaf
+
+Video del proyecto funcionando: 
+https://youtu.be/xIM7jrOf7V0
